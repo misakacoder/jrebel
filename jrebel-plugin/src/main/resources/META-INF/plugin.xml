@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>com.misaka.jrebel</id>
+    <name>JRebel</name>
+    <vendor email="210086826@qq.com" url="https://github.com/misakacoder">misakacoder</vendor>
+    <description><![CDATA[
+    author: misakacoder<br>
+    description: java hot deployment plugin
+    ]]></description>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <executor implementation="com.misaka.executor.JRebelRunExecutor"/>
+        <executor implementation="com.misaka.executor.JRebelDebugExecutor"/>
+        <programRunner implementation="com.misaka.runner.JRebelRunRunner"/>
+        <programRunner implementation="com.misaka.runner.JRebelDebugRunner"/>
+    </extensions>
+    <actions>
+        <action id="JRebelRunAction" class="com.misaka.action.JRebelRunAction" text="JRebelRunAction" description="JRebelRunAction">
+            <add-to-group group-id="RunDashboardContentToolbar" anchor="after" relative-to-action="RunDashboard.Debug"/>
+        </action>
+        <action id="JRebelDebugAction" class="com.misaka.action.JRebelDebugAction" text="JRebelDebugAction" description="JRebelDebugAction">
+            <add-to-group group-id="RunDashboardContentToolbar" anchor="after" relative-to-action="JRebelRunAction"/>
+        </action>
+    </actions>
+</idea-plugin>
