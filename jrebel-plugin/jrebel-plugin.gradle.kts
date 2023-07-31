@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij") version "1.7.0"
+    id("org.jetbrains.intellij") version "1.14.1"
 }
 
 group = "com.misaka"
@@ -17,9 +17,4 @@ intellij {
     version.set("2021.3")
     type.set("IC")
     plugins.set(listOf("java"))
-}
-
-tasks.patchPluginXml {
-    sinceBuild.set("213")
-    untilBuild.set("999.*")
 }

@@ -21,5 +21,14 @@ tasks.jar {
         attributes(manifest)
     }
     from(configurations.runtimeClasspath.get().filter { it.name.endsWith(".jar") }.map { zipTree(it) })
-    version = ""
+    archiveFileName.set("${project.name}.jar")
+}
+
+tasks.jar {
+    this.doLast {
+        copy {
+            from("$buildDir/libs")
+            into("${rootDir}/jrebel-plugin/libs")
+        }
+    }
 }
