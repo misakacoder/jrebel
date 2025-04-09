@@ -34,5 +34,5 @@ jobs:
       - name: Create github release
         uses: softprops/action-gh-release@v1
         with:
-          tag-name: latest
+          tag_name: latest
           files: release/*.zip
