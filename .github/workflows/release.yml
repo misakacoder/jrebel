@@ -12,6 +12,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: ${{ github.ref_name }}
+      cancel-in-progress: true
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
