@@ -31,6 +31,14 @@ jobs:
       - name: Build plugin
         run: ./gradlew release
 
+      - name: Update tag
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git fetch --prune --unshallow
+          git tag -f latest
+          git push origin -f latest
+
       - name: Create github release
         uses: softprops/action-gh-release@v1
         with:
