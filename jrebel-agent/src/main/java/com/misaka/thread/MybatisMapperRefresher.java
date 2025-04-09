@@ -17,9 +17,11 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class MybatisMapperRefresher implements Runnable {
@@ -43,9 +45,10 @@ public class MybatisMapperRefresher implements Runnable {
         String relativePath = StringUtil.trim(filepath, classpath.getAbsolutePath());
         relativePath = StringUtil.trim(relativePath, File.separator);
         relativePath = relativePath.replace(File.separator, "/");
+        Path path = Paths.get(filepath);
         try (
-                InputStream parserStream = new FileInputStream(filepath);
-                InputStream builderStream = new FileInputStream(filepath)
+                InputStream parserStream = Files.newInputStream(path);
+                InputStream builderStream = Files.newInputStream(path)
         ) {
             Field loadedResourcesField = Configuration.class.getDeclaredField("loadedResources");
             loadedResourcesField.setAccessible(true);
