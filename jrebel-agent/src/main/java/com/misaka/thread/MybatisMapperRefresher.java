@@ -38,6 +38,7 @@ public class MybatisMapperRefresher implements Runnable {
         watcher.watch();
     }
 
+    @SuppressWarnings("unchecked")
     private void refreshMapper(File classpath, String filepath) {
         String relativePath = StringUtil.trim(filepath, classpath.getAbsolutePath());
         relativePath = StringUtil.trim(relativePath, File.separator);
